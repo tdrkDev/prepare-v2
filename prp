@@ -1,0 +1,29 @@
+#!/bin/bash
+git clone -q https://github.com/RomanDesigner/prp2-u.git /home/$USER/.prptmp/
+cd /home/$USER/.prptmp && chmod +x prpu && ./prpu
+mpath=$PWD
+if [ $mpath = /home/$USER ]
+then
+echo -ne "Вы находитесь в корне папки /home/$USER/! Создание папки prp_folder для ваших действий!"
+cd /home/$USER/ && mkdir prp_folder && cd prp_folder && prp
+exit 0
+else
+echo -n "
+|--------------------|
+| Система сборки PRP |
+|-------------------------------
+| Рабочая директория: $mpath
+|-------------------------------
+
+Функции:
+
+сборка) Собрать прошивку LOS
+
+"
+read prpn
+case "$prpn" in
+[с|С][б|Б][о|О][р|Р][к|К][а|А]) echo "Сборка началась..."
+exit 0
+;;
+esac
+fi
